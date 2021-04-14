@@ -1,0 +1,16 @@
+body {
+    background-image: url("../style/background_tools.jpeg");
+    background-blend-mode: multiply;
+    background-color: #405872;
+    background-size: cover;
+    user-select: none;
+    -moz-user-select: none;
+    box-sizing: border-box;
+}
+
+
+
+form {
+    background-color: #405872;
+}
+
