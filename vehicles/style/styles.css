@@ -9,13 +9,13 @@ body {
     box-sizing: border-box;
 }
 
-h2 {
+h1 {
     color: white;
 }
 
 form {
     background-color: white;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 #idDivPrintInfo {
