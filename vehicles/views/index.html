@@ -24,135 +24,81 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-     <!-- start of CreateCar form -->
     <div class="container">
-        <h2 class="my-3 text-center">LET'S CREATE A CAR</h2>
-        <form id="idCarForm"  name="nameCarForm">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="plate"><i class="far fa-address-card"></i> Plate:</label>
-                    <input type="text"  class="form-control" id="idPlate" name = "namePlate" placeholder="1212SDS">
-                    <div class="invalid-feedback" id="errorPlate"></div>
+        <h1 class="my-3 text-center">LET'S CREATE A CAR</h1>
+        <form class="car-form">
+            <div class="row">
+                <div class="col">
+                    <label for="inputPlate"><i class="far fa-address-card"></i> Plate: </label>
+                    <input type="text" id="inputPlate" name="plate" class="form-control" placeholder="1212SDS">
+                    <div class="invalid-feedback" id="plateError"></div>
                 </div>
-                <div class="form-group  col-md-4">
-                    <label for="brand"><i class="fas fa-signature"></i> Brand:</label>
-                    <input type="text"  class="form-control" id="idBrand" name = "nameBrand" placeholder="FERRARI">
-                    <div class="invalid-feedback" id="errorBrand"></div>
+                    <div class="col">
+                    <label for="inputBrand"><i class="fas fa-signature"></i> Brand: </label>
+                    <input type="text" id="inputBrand" name="brand" class="form-control col" placeholder="FERRARI">
                 </div>
-                <div class="form-group  col-md-4">
-                    <label for="color"><i class="fas fa-paint-roller"></i> Color:</label>
-                    <input type="text"  class="form-control" id="idColor" name = "nameColor" placeholder="SILVER">
-                    <div class="invalid-feedback" id="errorColor"></div>
-                </div>               
-            </div>
-        <button type="button" id="btnCreateCar" class="btn btn-info" onclick="createCar()">Create car</button>
-        </form>    
-    </div>
-    <!-- end of createCar form --> 
-    <!-- start of CreateWheels form -->
-    <div id="wheelsDiv" class="container d-none">
-        <div class="row">
-            <p class="my-3 text-left">Now, let's add the wheels:</p>
-        </div>
-        <form id="idWheelsForm"  name="nameCarForm">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="wheelBrand1">Wheel 1:</label>
-                    <input type="text" class="form-control" id="idWheelBrand1" name = "nameWheelBrand1" placeholder="Berlinetta">
-                    <div class="invalid-feedback" id="errorwheelBrand1"></div>
-                </div>
-                
-                <div class="form-group col-md-3">
-                    <label for="wheelBrand1">Wheel 2:</label>
-                    <input type="text" class="form-control" id="idWheelBrand2" name = "nameWheelBrand2" placeholder="Berlinetta">
-                    <div class="invalid-feedback" id="errorwheelBrand2"></div>
-                </div>
-
-                <div class="form-group col-md-3">
-                    <label for="wheelBrand1">Wheel 3:</label>
-                    <input type="text" class="form-control" id="idWheelBrand3" name = "nameWheelBrand3" placeholder="Berlinetta">
-                </div>
-
-                <div class="form-group col-md-3">
-                    <label for="wheelBrand1">Wheel 4:</label>
-                    <input type="text" class="form-control" id="idWheelBrand4" name = "nameWheelBrand4" placeholder="Berlinetta">
+                    <div class="col">
+                    <label for="inputColor"><i class="fas fa-paint-roller"></i> Color: </label>
+                    <input type="text" id="inputColor" name="color" class="form-control col" placeholder="SILVER">
                 </div>
             </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <input type="text"  class="form-control" id="idWheelDiam1" name = "nameWheelDiam1" placeholder="Diameter for wheel 1">
-                    <div class="invalid-feedback" id="errorwheelDiam1"></div>
-                </div>
-                
-                <div class="form-group col-md-3">
-                    <input type="text"  class="form-control" id="idWheelDiam2" name = "nameWheelDiam2" placeholder="Diameter for wheel 2">
-                    <div class="invalid-feedback" id="errorwheelDiam2"></div>
-                </div>
-
-                <div class="form-group col-md-3">
-                    <input type="text"  class="form-control" id="idWheelDiam3" name = "nameWheelDiam3" placeholder="Diameter for wheel 3">
-                    <div class="invalid-feedback" id="errorwheelDiam3"></div>
-                </div>
-
-                <div class="form-group col-md-3">
-                    <input type="text"  class="form-control" id="idWheelDiam4" name = "nameWheelDiam4" placeholder="Diameter for wheel 4">
-                    <div class="invalid-feedback" id="errorwheelDiam4"></div>
-
-                </div>
-            </div>
-
-            <button type="button" id= "btnCreateWheel" class="btn btn-info" onclick="createWheels()">Add Weels</button> 
+            <button type="button" id="createCarBtn" class="btn btn-info mt-4">Create Car</button>
         </form>
+
+
+        <form class="wheels-form d-none">
+            <div class="row">
+                <div class="col">                    
+                    <label for="marcaRueda1">Wheel brand 1: </label>
+                    <input type="text" id="marcaRueda1" name="marcaRueda1" class="form-control" placeholder="Berlinetta">
+                    <div class="invalid-feedback" id="marcaRuedaError1"></div>
+                </div>
+                    <div class="col">
+                    <label for="diametroRueda1">Diameter for wheel 1: </label>
+                    <input type="text" id="diametroRueda1" name="diametroRueda1" class="form-control" placeholder="between 0.4 and 2">
+                    <div class="invalid-feedback" id="rueda1Error"></div>
+                </div>
+                <div class="col">
+                    <label for="marcaRueda2">Wheel brand 2: </label>
+                    <input type="text" id="marcaRueda2" name="marcaRueda2" class="form-control" placeholder="Berlinetta">
+                    <div class="invalid-feedback" id="marcaRuedaError2"></div>
+                </div>
+                <div class="col">
+                    <label for="diametroRueda2">Diameter for wheel 2: </label>
+                    <input type="text" id="diametroRueda2" name="diametroRueda2" class="form-control" placeholder="between 0.4 and 2">
+                    <div class="invalid-feedback" id="rueda2Error"></div>
+                </div>
+            </div> 
+            <div class="row mt-3">
+                <div class="col">
+                    <label for="marcaRueda3">Wheel brand 3: </label>
+                    <input type="text" id="marcaRueda3" name="marcaRueda3" class="form-control" placeholder="Berlinetta">
+                    <div class="invalid-feedback" id="marcaRuedaError3"></div>
+                </div>
+                    <div class="col">
+                    <label for="diametroRueda3">Diameter for wheel 3: </label>
+                    <input type="text" id="diametroRueda3" name="diámetroRueda3" class="form-control" placeholder="between 0.4 and 2">
+                    <div class="invalid-feedback" id="rueda3Error"></div>
+                </div>
+                <div class="col">
+                    <label for="marcaRueda4">Wheel brand 4: </label>
+                    <input type="text" id="marcaRueda4" name="marcaRueda4" class="form-control" placeholder="Berlinetta">
+                    <div class="invalid-feedback" id="marcaRuedaError4"></div>
+                </div>
+                <div class="col">
+                    <label for="diametroRueda4">Diameter for wheel 4: </label>
+                    <input type="text" id="diametroRueda4" name="diámetroRueda4" class="form-control" placeholder="between 0.4 and 2">
+                    <div class="invalid-feedback" id="rueda4Error"></div>
+                </div>
+            </div>
+            <button type="button" id="createWheelsBtn" class="btn btn-info mt-4">Add Wheels</button>
+        </form>
+<br>
+        <div class="bg-light text-dark" id="car-container"></div>
+        <div class="bg-light text-dark" id="wheels-container"></div>
         
-    </div>
-    <!-- end of createWheels form -->
-    <!-- here's the information of the car you have just build!-->
-    <div id= "idDivPrintInfo" class="container my-4 py-2  border border-info d-none"> 
-        <p class="font-weight-bold"><i class="fas fa-car"></i> Your car has been correctly created:</p>
-        <div class="row">
-            <div class="col-md-4">
-                <p id=showPlate></p>
-            </div>
-            <div class="col-md-4">
-                <p id=showBrand></p>
-            </div>
-            <div class="col-md-4">
-                <p id=showColor></p>
-            </div>
-        </div>
-
-        <p class="font-weight-bold mt-2">Here's the wheels you have added:</p>
-        <div class="row">
-            <div class="col-md-3">
-                <p >Wheel 1:</p>
-                <p id=showBrand1></p>
-                <p id=showDiameter1></p>
-            </div>
-            <div class="col-md-3">
-                <p>Wheel 2:</p>
-                <p id=showBrand2></p>
-                <p id=showDiameter2></p>
-            </div>
-            <div class="col-md-3">
-                <p>Wheel 3:</p>
-                <p id=showBrand3></p>
-                <p id=showDiameter3></p>
-            </div>
-
-            <div class="col-md-3">
-                <p>Wheel 4:</p>
-                <p id=showBrand4></p>
-                <p id=showDiameter4></p>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center mt-3">
-            <button type="button" class="btn btn-info" onclick="hideInfo()">Close</button> 
-        </div>
-    </div>
-
-<!-- end of the car & wheels information -->
-<!-- Custom js scripts -->
+    </div> 
+ <!-- Custom js scripts -->
 <script src="../models/car.js"></script>
 <script src="../models/wheel.js"></script>
 <script src="../controllers/controller.js"></script>
