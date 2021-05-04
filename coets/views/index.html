@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>TypeScript- Rockets</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/b5988d5d8d.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./style.css">
+	<title>TypeScript - Rockets exercise</title>
 </head>
+
 <body>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid header">
+          <span class="navbar-brand mt-3 mb-0 title">The Space Race</span>
+          <p class="subtitle"> Let's see which of these two rockets is faster! </p>
+        </div>
+      </nav>
+      
+
+      <section class="operations">
+        <form class="ground-control">
+          <h4>LAUNCHER</h4>
+          <div class="controller">
+            <button id="launch1" type="button" class="btn btn-outline-dark launcher-btn" onclick="onCreate3('32WESSDS', [0,0,0]);"> Rocket 1 </button>
+            <button id="launch2" type="button" class="btn btn-outline-dark launcher-btn" onclick="onCreate6('LDSFJA32', [0,0,0,0,0,0]);"> Rocket 2 </button>          
+          </div>
+
+          <h4>ENGINE</h4>
+          <div class="controller">
+            <button id="speed1" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedUp3();">Speed up 1</button>
+            <button id="speed2" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedUp6();">Speed up 2</button>
+            <button id="down1" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedDown3();">Slow down 1</button>
+            <button id="down2" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedDown6();">Slow down 2</button> 
+          </div>
+
+          <h4>DATA</h4>
+          <div class="controller">
+            <div> <i class="fas fa-space-shuttle"></i> </div>
+            <button id="data1" type="button" class="btn btn-outline-secondary data-btn" onclick="onShow3();">1 Rocket info</button>
+            <button id="data2" type="button" class="btn btn-outline-secondary data-btn" onclick="onShow6();">2 Rocket info</button>
+            <button id="data3" type="button" class="btn btn-outline-secondary data-btn" onclick="onShowAll();">Information for both rockets</button>
+            <div> <i class="fas fa-space-shuttle"></i> </div>
+          </div>
+
+          <div id="showRocket">
+
+          </div>
+        </form> 
+
+      </section>
+    </div>
+  </div>
+</div>
+    <script src="../models/skyrocket.js"></script>
+    <script src="../controllers/controllers.js"></script>
 </body>
 </html>
+
