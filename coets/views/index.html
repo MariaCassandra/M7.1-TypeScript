@@ -28,28 +28,29 @@
         <form class="ground-control">
           <h4>LAUNCHER</h4>
           <div class="controller">
-            <button id="launch1" type="button" class="btn btn-outline-dark launcher-btn" onclick="onCreate3('32WESSDS', [0,0,0]);"> Rocket 1 </button>
-            <button id="launch2" type="button" class="btn btn-outline-dark launcher-btn" onclick="onCreate6('LDSFJA32', [0,0,0,0,0,0]);"> Rocket 2 </button>          
+            <button id="launch1" type="button" class="btn btn-outline-dark launcher-btn" onclick="addRocket1(event)"> Rocket 1 </button>
+            <button id="launch2" type="button" class="btn btn-outline-dark launcher-btn" onclick="addRocket2(event)"> Rocket 2 </button>          
           </div>
 
           <h4>ENGINE</h4>
           <div class="controller">
-            <button id="speed1" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedUp3();">Speed up 1</button>
-            <button id="speed2" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedUp6();">Speed up 2</button>
-            <button id="down1" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedDown3();">Slow down 1</button>
-            <button id="down2" type="button" class="btn btn-outline-secondary engine-btn" onclick="speedDown6();">Slow down 2</button> 
+            <button id="speed1" type="button" class="btn btn-outline-secondary engine-btn" onclick="throttleRocket(0)">Speed up 1</button>
+            <button id="speed2" type="button" class="btn btn-outline-secondary engine-btn" onclick="throttleRocket(1)">Speed up 2</button>
+            <button id="down1" type="button" class="btn btn-outline-secondary engine-btn" onclick="brakeRocket(0)">Slow down 1</button>
+            <button id="down2" type="button" class="btn btn-outline-secondary engine-btn" onclick="brakeRocket(1)">Slow down 2</button> 
           </div>
 
           <h4>DATA</h4>
           <div class="controller">
             <div> <i class="fas fa-space-shuttle"></i> </div>
-            <button id="data1" type="button" class="btn btn-outline-secondary data-btn" onclick="onShow3();">1 Rocket info</button>
-            <button id="data2" type="button" class="btn btn-outline-secondary data-btn" onclick="onShow6();">2 Rocket info</button>
-            <button id="data3" type="button" class="btn btn-outline-secondary data-btn" onclick="onShowAll();">Information for both rockets</button>
+            <button id="data1" type="button" class="btn btn-outline-secondary data-btn" onclick="printRocketInfo(0)">1 Rocket info</button>
+            <button id="data2" type="button" class="btn btn-outline-secondary data-btn" onclick="printRocketInfo(1)">2 Rocket info</button>
+            <button id="data3" type="button" class="btn btn-outline-secondary data-btn" onclick="printRocketInfo()">Information for both rockets</button>
             <div> <i class="fas fa-space-shuttle"></i> </div>
           </div>
 
-          <div id="showRocket">
+          <div id="rockets"> 
+            <h4>THE OUTPUT</h4> <br>
 
           </div>
         </form> 
@@ -62,4 +63,3 @@
     <script src="../controllers/controllers.js"></script>
 </body>
 </html>
-
