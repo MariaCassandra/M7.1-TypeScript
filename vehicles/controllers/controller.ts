@@ -1,9 +1,8 @@
-
-let car: Car = new Car();
+let car: Car = new Car("","","");
 const wheelsForm = document.getElementsByClassName("wheels-form")[0];
 
 function showCar(car:Car) {
-    let divCar = document.getElementById("car-container")  as HTMLDivElement;
+    let divCar = document.getElementById("car-container") as HTMLDivElement;
     let carForm = document.getElementsByClassName("car-form")[0];
     
     let displayCar:string = `
@@ -66,52 +65,97 @@ function createCar() {
 
     let inputPlate:string = (<HTMLInputElement>document.getElementById("inputPlate")).value;
     let inputColor:string = (<HTMLInputElement>document.getElementById("inputColor")).value;
-    let inputBrand: string = (<HTMLInputElement>document.getElementById("inputBrand")).value;
-    let inputPlateDiv =  document.getElementById("inputPlate") as HTMLDivElement;
-    let inputPlateError =  document.getElementById("plateError") as HTMLDivElement;
+    let inputBrand:string = (<HTMLInputElement>document.getElementById("inputBrand")).value;
+    let inputPlateDiv = document.getElementById("inputPlate") as HTMLDivElement;
+    let inputPlateError = document.getElementById("plateError") as HTMLDivElement;
+    let inputBrandDiv = document.getElementById("inputBrand") as HTMLDivElement;
+    let inputBrandError = document.getElementById("brandError") as HTMLDivElement;
+    let inputColorDiv = document.getElementById("inputColor") as HTMLDivElement;
+    let inputColorError = document.getElementById("colorError") as HTMLDivElement;
 
-    if (validatePlate(inputPlate)) {
+    let carValidator = true;
+
+    if (inputBrand == "") {
+        inputBrandDiv.classList.add("is-invalid");
+        inputBrandError.textContent = "This field is mandatory";
+        carValidator = false;
+    } else {
+        inputBrandDiv.classList.remove("is-invalid");
+        inputBrandError.textContent = "";
+    }
+
+    if (inputColor == "") {
+        inputColorDiv.classList.add("is-invalid");
+        inputColorError.textContent = "This field is mandatory";
+        carValidator = false;
+    } else {
+        inputColorDiv.classList.remove("is-invalid");
+        inputColorError.textContent = "";
+    }
+
+    if (!validatePlate(inputPlate)) { // ! es igual que == false
+        inputPlateDiv.classList.add("is-invalid");
+        inputPlateError.textContent = "Plate format should be 4 numbers and 3 letters";
+        carValidator = false;
+    }    else {
+        inputPlateDiv.classList.remove("is-invalid");
+        inputPlateError.textContent = "";
+    }
+    if (carValidator) {
         car.plate = inputPlate;
         car.color = inputColor;
         car.brand = inputBrand;
         showCar(car);
-    } else {
-        inputPlateDiv.classList.add("is-invalid");
-        inputPlateError.textContent = "Plate format should be 4 numbers and 3 letters";
-    }    
+    }
 }
 
-function validateBrand() {
+function validateDiam(diams:string) {
+    let regex = /[0-9.]+$/;
 
+    if (diams != "" && regex.test(diams)) {
+        let diamsNumerico = parseFloat(diams);
+        if (diamsNumerico>=0.4 && diamsNumerico<=2) {
+            return true;
+        }
+    } 
+    return false;
 }
 
 function addWheels(car:Car) {
+    let wheelValidator = true;
     
     for (let i = 1; i<5; i++) {
         
         let marcaRueda:string = (<HTMLInputElement>document.getElementById("marcaRueda"+i)).value;
-        let diametroRueda:number = parseFloat((<HTMLInputElement>document.getElementById("diametroRueda"+i)).value);
-        let marcaRuedaErrorDiv = document.getElementById("marcaRuedaError"+i) as HTMLDivElement;
-        let ruedaErrorDiv = document.getElementById("rueda"+i+"Error") as HTMLDivElement;
-        
+        let diametroRueda:string = (<HTMLInputElement>document.getElementById("diametroRueda"+i)).value;
+        let marcaRuedaErrorDiv = <HTMLDivElement>document.getElementById("marcaRuedaError"+i);
+        let ruedaErrorDiv = <HTMLDivElement>document.getElementById("rueda"+i+"Error");
+
         document.getElementById("marcaRueda"+i)?.classList.remove("is-invalid");
         document.getElementById("diametroRueda"+i)?.classList.remove("is-invalid");
 
-        if (diametroRueda>=0.4 && diametroRueda<=2 && !marcaRueda == "") {
-            let newWheel = new Wheel(diametroRueda, marcaRueda);
-            car.addWheel(newWheel);
-        } else if (marcaRueda == "") {
-            console.log("Error!!!!") 
+        if (marcaRueda == "") {
             document.getElementById("marcaRueda"+i)?.classList.add("is-invalid");
-            marcaRuedaErrorDiv.textContent = "Brand must be indicated";
-            return false;
-        } else {
+            marcaRuedaErrorDiv.textContent = "Brand must be indicated"; 
+            wheelValidator = false;
+        } 
+
+        
+        if (!validateDiam(diametroRueda)) {
             document.getElementById("diametroRueda"+i)?.classList.add("is-invalid");
             ruedaErrorDiv.textContent = "Diameter should be between 0.4 and 2";
-            return false;
+            wheelValidator = false;
         }
     }
-    showWheels(car);
+    if (wheelValidator) {
+        for (let i = 1; i<5; i++) {
+            let marcaRueda:string = (<HTMLInputElement>document.getElementById("marcaRueda"+i)).value;
+            let diametroRueda:number = parseFloat((<HTMLInputElement>document.getElementById("diametroRueda"+i)).value);
+            let newWheel = new Wheel(diametroRueda, marcaRueda);
+            car.addWheel(newWheel);
+        }
+        showWheels(car);
+    }
 }
 
 let createCarBtnInput = document.getElementById('createCarBtn')!;
