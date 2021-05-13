@@ -1,32 +1,20 @@
-html,
+/*
+ * Base structure
+ */
+
 body {
-  margin: 0;
-  height: 100vh;
   font-family: 'Lato', sans-serif;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #22a6b3;
-  padding-bottom: 1rem;
-  border-radius: 0.5rem;
+.cover-container {
+  max-width: 42em;
 }
 
-.title {
-  font-size: 3rem;
-}
 
-.subtitle {
-  font-weight: 600;
-  font-size: 1.2rem;
-  z-index: 2;
-}
+/* Controllers */
 
-.ground-control {
-  border: 3px solid rgba(34, 166, 179, 0.178);
+ .ground-control {
+  border: 3px solid rgba(126, 214, 223, 0.178);
   padding: 1rem;
   border-radius: 0.5rem;
   margin-top: 1rem;
@@ -41,36 +29,20 @@ body {
   margin-bottom: 2rem;
 }
 
-h4 {
-  text-align: center;
-}
+/* Custom default buttons */
 
-button:hover {
-  cursor: pointer;
-}
-
-.launcher-btn {
+.launcher-btn,
+.engine-btn,
+.data-btn,
+.btn-secondary {
   background-color: #7ed6df;
 }
 
-.launcher-btn:hover {
+.launcher-btn:hover,
+.engine-btn:hover,
+.data-btn:hover,
+.btn-secondary:hover {
   background-color: #22a6b3;
-}
-
-.engine-btn { 
-  background-color: rgba(126, 214, 223, 0.575);
-}
-
-.engine-btn:hover {
-  background-color: rgba(34, 166, 179, 0.575);
-}
-
-.data-btn {
-  background-color: rgba(126, 214, 223, 0.415);
-}
-
-.data-btn:hover {
-  background-color: rgba(34, 166, 179, 0.415);
 }
 
 .fa-space-shuttle {
@@ -78,17 +50,4 @@ button:hover {
   color: #22a6b3;
   transform: rotate(-90deg);
   text-shadow: 3px 3px 10px #5a3811;
-}
-
-#rockets {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-@media only screen and (max-width: 1100px) {
-  .operations {
-    grid-template-columns: 1fr;
-  }
 }
