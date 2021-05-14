@@ -1,0 +1,53 @@
+/*
+ * Base structure
+ */
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.cover-container {
+  max-width: 42em;
+}
+
+
+/* Controllers */
+
+ .ground-control {
+  border: 3px solid rgba(126, 214, 223, 0.178);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.controller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Custom default buttons */
+
+.launcher-btn,
+.engine-btn,
+.data-btn,
+.btn-secondary {
+  background-color: #7ed6df;
+}
+
+.launcher-btn:hover,
+.engine-btn:hover,
+.data-btn:hover,
+.btn-secondary:hover {
+  background-color: #22a6b3;
+}
+
+.fa-space-shuttle {
+  font-size: 3rem;
+  color: #22a6b3;
+  transform: rotate(-90deg);
+  text-shadow: 3px 3px 10px #5a3811;
+}
