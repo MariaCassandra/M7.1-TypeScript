@@ -126,7 +126,7 @@ function print2(rocket: Rocket) {
 // function for the rocket info buttons
 function printRocketInfo() {
 
-        if (rocket1 == undefined || rocket2 == undefined) {
+        if (rocket1 == undefined && rocket2 == undefined) {
             alert("Sorry, this option is off limits! You haven't created a rocket yet!");
         } else {
 		print(rocket1);
