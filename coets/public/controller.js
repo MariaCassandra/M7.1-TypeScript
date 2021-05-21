@@ -117,22 +117,12 @@ function print2(rocket) {
         "The rocket " + rocket.rocketId + " you have created has " + rocket.thrusters.length + " thrusters: " + printThrustMaxPower;
 }
 // function for the rocket info buttons
-function printRocketInfo(x) {
-    if (x == 1) {
-        if (rocket1 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        }
-        else {
-            print(rocket1);
-        }
+function printRocketInfo() {
+    if (rocket1 == undefined || rocket2 == undefined) {
+        alert("Sorry, this option is off limits! You haven't created a rocket yet!");
     }
-    else if (x == 2) {
-        if (rocket2 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        }
-        else {
-            print(rocket2);
-        }
+    else {
+        print(rocket1);
     }
 }
 function printAllRockets() {
