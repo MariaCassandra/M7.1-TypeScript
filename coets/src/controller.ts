@@ -1,5 +1,8 @@
-let rocket1: Rocket;
-let rocket2: Rocket;
+// let rocket1: Rocket;
+// let rocket2: Rocket;
+
+// array de cohetes
+let rockets: Rocket [] = new Array();
 
 let rocketId1: string = "32WESSDS";
 let rocketId2: string = "LDSFJA32";
@@ -7,25 +10,36 @@ let rocketId2: string = "LDSFJA32";
 let thrustMaxPower1: number[] = [10, 30, 80];
 let thrustMaxPower2: number[] = [30, 40, 50, 50, 30, 10];
 
-let currentPower: number;
-let x;
+let errorMessage: string = "Sorry, this option is off limits! You haven't created a rocket yet!";
 
 
 // LAUNCHER - function for the rocket buttons
 function addRocket(x:number) {
+    if (x == 0) {
+        rockets[x] = new Rocket(rocketId1);      
+        createThusters(rockets[x], thrustMaxPower1);
+        console.log(rockets[x]);
+    } else if (x == 1) {
+        rockets[x] = new Rocket(rocketId2);
+        createThusters(rockets[x], thrustMaxPower2);
+        console.log(rockets[x]);
+    }
+}
 
+/* 
+*********FUNCION ANTES DE AÑADIR EL ARRAY DE ROCKETS
+
+function addRocket(x:number) {
     if (x == 1) {
-        rocket1 = new Rocket(rocketId1);
+        rocket1 = new Rocket(rocketId1);      
         createThusters(rocket1, thrustMaxPower1);
-        calculateSpeed(rocket1);
         console.log(rocket1);
     } else if (x == 2) {
         rocket2 = new Rocket(rocketId2);
         createThusters(rocket2, thrustMaxPower2);
-        calculateSpeed(rocket2);
         console.log(rocket2);
     }
-}
+} */
 
 // create thrusters
 function createThusters(rocket: Rocket, thrustMaxPower: number[]) {
@@ -41,6 +55,7 @@ function calculateSpeed(rocket: Rocket) {
         currentSpeed += rocket.thrusters[i].currentPower;
     }
     console.log(currentSpeed);
+    clean();
     (<HTMLInputElement>document.getElementById("velocidad")).innerText = "The current speed of the rocket is: " + currentSpeed;
 }
 
@@ -51,30 +66,47 @@ function speedUp(rocket: Rocket) {
         {rocket.thrusters[i].currentPower += 10;
         }
     }
-
 }
 
-// function for the accelerate buttons
-function thrusterRocket(x: number) {
+function getRocket(x: number): Rocket {
+    let rocket: Rocket = new Rocket("");
+        if (rockets[x] == undefined) {
+            alert(errorMessage);
+        } else {
+            rocket = rockets[x];
+        }
+    return rocket;
+}
+
+/* 
+*********FUNCION ANTES DE AÑADIR EL ARRAY DE ROCKETS
+
+function getRocket(x: number): Rocket {
+    let rocket: Rocket = new Rocket("");
     if (x == 1) {
         if (rocket1 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!")
+            alert(errorMessage);
         } else {
-            speedUp(rocket1);
-            calculateSpeed(rocket1);
-            console.log(rocket1);
+            rocket = rocket1;
         }
     } else if (x == 2) {
         if (rocket2 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!")
+            alert(errorMessage);
         } else {
-            speedUp(rocket2);
-            calculateSpeed(rocket2);
-            console.log(rocket2);
+            rocket = rocket2;
         }
-    }
-}
+    } 
+    return rocket;
+} */
 
+
+// function for the accelerate buttons
+function thrusterRocket(x: number) {
+    let rocket: Rocket = getRocket(x);     
+    speedUp(rocket);
+    calculateSpeed(rocket);
+    console.log(rocket);
+}
 
 // ENGINE - slow down
 function slowDown(rocket: Rocket) {
@@ -87,60 +119,49 @@ function slowDown(rocket: Rocket) {
 
 // function for the brake buttons
 function brakeRocket(x: number) {
-    if (x == 1) {
-        if (rocket1 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        } else {
-            slowDown(rocket1);
-            calculateSpeed(rocket1);
-            console.log(rocket1);
-        }
-    } else if (x == 2) {
-        if (rocket2 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        } else {
-            slowDown(rocket2);
-            calculateSpeed(rocket2);
-            console.log(rocket2);
-        }
-    }
+    let rocket: Rocket = getRocket(x);
+    slowDown(rocket);
+    calculateSpeed(rocket);
+    console.log(rocket);   
 }
+
 // DATA - show the rocket info
 function print(rocket: Rocket) {
-    let printThrustMaxPower: number[] = [];
-    for (let i = 0; i < rocket.thrusters.length; i++) {
-        printThrustMaxPower.push(rocket.thrusters[i].thrustMaxPower)
+    if (rocket.rocketId !== "") { 
+        let printThrustMaxPower: number[] = [];
+        for (let i = 0; i < rocket.thrusters.length; i++) {
+            printThrustMaxPower.push(rocket.thrusters[i].thrustMaxPower)
+        }
+        (<HTMLInputElement>document.getElementById("info")).innerHTML +=
+         "The rocket " + rocket.rocketId + " you have created has " + rocket.thrusters.length + " thrusters: " + printThrustMaxPower + "<br>";
     }
-    (<HTMLInputElement>document.getElementById("info1")).innerText =
-    "The rocket " + rocket.rocketId + " you have created has " + rocket.thrusters.length + " thrusters: " + printThrustMaxPower;
+}
+
+function clean() {
+    (<HTMLInputElement>document.getElementById("info")).innerText = "";
+    (<HTMLInputElement>document.getElementById("velocidad")).innerText = "";
 }
 
 // function for the rocket info buttons
 function printRocketInfo(x: number) {
-    if (x == 1) {
-        if (rocket1 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        } else {
-			print(rocket1);
-        }
-    } else if (x == 2) {
-        if (rocket2 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        } else {
-			print(rocket2);
-        }
-    }
+    let rocket: Rocket = getRocket(x);
+    clean();
+	print(rocket);
 }
 
 function printAllRockets() {
-    if (rocket1 == undefined && rocket2 == undefined) {
-        alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-    } else if (rocket1 == undefined) {
-        print(rocket2);
-    } else if (rocket2 == undefined) {
-        print(rocket1);
-    } else {
-        print(rocket1);
-        print(rocket2);
+    clean();
+    for (let i = 0; i < rockets.length; i++) {
+        print(getRocket(i));
     }
 }
+
+/* 
+*********FUNCION ANTES DE AÑADIR EL ARRAY DE ROCKETS
+
+function printAllRockets() {
+    clean();
+    print(getRocket(1));
+    (<HTMLInputElement>document.getElementById("info")).innerHTML +="<br>";
+    print(getRocket(2));
+} */
