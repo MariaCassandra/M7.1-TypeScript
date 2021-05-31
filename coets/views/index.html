@@ -18,7 +18,7 @@
         integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
         crossorigin="anonymous"/>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <!--FONT-FAMILY MONTSERRAT-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -39,23 +39,23 @@
                 <form class="ground-control">
                   <h4>LAUNCHER</h4>
                   <div class="controller">
-                    <button id="launch1" type="button" class="btn btn-outline-dark launcher-btn" onclick="addRocket(1)"> Rocket 1 </button>
-                    <button id="launch2" type="button" class="btn btn-outline-dark launcher-btn" onclick="addRocket(2)"> Rocket 2 </button>          
+                    <button id="launch1" type="button" class="btn btn-outline-dark launcher-btn" onclick="addRocket(0)"> Rocket 1 </button>
+                    <button id="launch2" type="button" class="btn btn-outline-dark launcher-btn" onclick="addRocket(1)"> Rocket 2 </button>          
                   </div>
         
                   <h4>ENGINE</h4>
                   <div class="controller">
-                    <button id="speed1" type="button" class="btn btn-outline-dark engine-btn" onclick="thrusterRocket(1)">Speed up 1</button>
-                    <button id="speed2" type="button" class="btn btn-outline-dark engine-btn" onclick="thrusterRocket(2)">Speed up 2</button>
-                    <button id="down1" type="button" class="btn btn-outline-dark engine-btn" onclick="brakeRocket(1)">Slow down 1</button>
-                    <button id="down2" type="button" class="btn btn-outline-dark engine-btn" onclick="brakeRocket(2)">Slow down 2</button> 
+                    <button id="speed1" type="button" class="btn btn-outline-dark engine-btn" onclick="thrusterRocket(0)">Speed up 1</button>
+                    <button id="speed2" type="button" class="btn btn-outline-dark engine-btn" onclick="thrusterRocket(1)">Speed up 2</button>
+                    <button id="down1" type="button" class="btn btn-outline-dark engine-btn" onclick="brakeRocket(0)">Slow down 1</button>
+                    <button id="down2" type="button" class="btn btn-outline-dark engine-btn" onclick="brakeRocket(1)">Slow down 2</button> 
                   </div>
         
                   <h4>DATA</h4>
                   <div class="controller">
                   
-                    <button id="data1" type="button" class="btn btn-outline-dark data-btn" onclick="printRocketInfo(1)">1 Rocket info</button>
-                    <button id="data2" type="button" class="btn btn-outline-dark data-btn" onclick="printRocketInfo(2)">2 Rocket info</button>
+                    <button id="data1" type="button" class="btn btn-outline-dark data-btn" onclick="printRocketInfo(0)">1 Rocket info</button>
+                    <button id="data2" type="button" class="btn btn-outline-dark data-btn" onclick="printRocketInfo(1)">2 Rocket info</button>
                   </div>
                 <div> <i class="fas fa-space-shuttle mr-4"> </i>
                     <button id="data3" type="button" class="btn btn-lg btn-outline-secondary fw-bold mb-2 data-btn" onclick="printAllRockets()"> Information for both rockets </button>
@@ -64,8 +64,7 @@
           </main>
         
           <footer class="mt-auto text-white-50">
-            <div id="info1"></div>
-            <div id="info2"></div>
+            <div id="info"></div>
             </br>
             <div id="velocidad"></div>
          
