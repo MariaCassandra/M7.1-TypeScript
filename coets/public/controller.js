@@ -1,27 +1,37 @@
 "use strict";
-var rocket1;
-var rocket2;
+// let rocket1: Rocket;
+// let rocket2: Rocket;
+// array de cohetes
+var rockets = new Array();
 var rocketId1 = "32WESSDS";
 var rocketId2 = "LDSFJA32";
 var thrustMaxPower1 = [10, 30, 80];
 var thrustMaxPower2 = [30, 40, 50, 50, 30, 10];
-var currentPower;
-var x;
+var errorMessage = "Sorry, this option is off limits! You haven't created a rocket yet!";
 // LAUNCHER - function for the rocket buttons
 function addRocket(x) {
+    if (x == 0) {
+        rockets[x] = new Rocket(rocketId1);
+        createThusters(rockets[x], thrustMaxPower1);
+        console.log(rockets[x]);
+    }
+    else if (x == 1) {
+        rockets[x] = new Rocket(rocketId2);
+        createThusters(rockets[x], thrustMaxPower2);
+        console.log(rockets[x]);
+    }
+}
+/* function addRocket(x:number) {
     if (x == 1) {
         rocket1 = new Rocket(rocketId1);
         createThusters(rocket1, thrustMaxPower1);
-        calculateSpeed(rocket1);
         console.log(rocket1);
-    }
-    else if (x == 2) {
+    } else if (x == 2) {
         rocket2 = new Rocket(rocketId2);
         createThusters(rocket2, thrustMaxPower2);
-        calculateSpeed(rocket2);
         console.log(rocket2);
     }
-}
+} */
 // create thrusters
 function createThusters(rocket, thrustMaxPower) {
     for (var i = 0; i < thrustMaxPower.length; i++) {
@@ -35,6 +45,7 @@ function calculateSpeed(rocket) {
         currentSpeed += rocket.thrusters[i].currentPower;
     }
     console.log(currentSpeed);
+    clean();
     document.getElementById("velocidad").innerText = "The current speed of the rocket is: " + currentSpeed;
 }
 // ENGINE - speed up
@@ -45,28 +56,39 @@ function speedUp(rocket) {
         }
     }
 }
-// function for the accelerate buttons
-function thrusterRocket(x) {
+function getRocket(x) {
+    var rocket = new Rocket("");
+    if (rockets[x] == undefined) {
+        alert(errorMessage);
+    }
+    else {
+        rocket = rockets[x];
+    }
+    return rocket;
+}
+/* function getRocket(x: number): Rocket {
+    let rocket: Rocket = new Rocket("");
     if (x == 1) {
         if (rocket1 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
+            alert(errorMessage);
+        } else {
+            rocket = rocket1;
         }
-        else {
-            speedUp(rocket1);
-            calculateSpeed(rocket1);
-            console.log(rocket1);
-        }
-    }
-    else if (x == 2) {
+    } else if (x == 2) {
         if (rocket2 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        }
-        else {
-            speedUp(rocket2);
-            calculateSpeed(rocket2);
-            console.log(rocket2);
+            alert(errorMessage);
+        } else {
+            rocket = rocket2;
         }
     }
+    return rocket;
+} */
+// function for the accelerate buttons
+function thrusterRocket(x) {
+    var rocket = getRocket(x);
+    speedUp(rocket);
+    calculateSpeed(rocket);
+    console.log(rocket);
 }
 // ENGINE - slow down
 function slowDown(rocket) {
@@ -78,67 +100,41 @@ function slowDown(rocket) {
 }
 // function for the brake buttons
 function brakeRocket(x) {
-    if (x == 1) {
-        if (rocket1 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        }
-        else {
-            slowDown(rocket1);
-            calculateSpeed(rocket1);
-            console.log(rocket1);
-        }
-    }
-    else if (x == 2) {
-        if (rocket2 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        }
-        else {
-            slowDown(rocket2);
-            calculateSpeed(rocket2);
-            console.log(rocket2);
-        }
-    }
+    var rocket = getRocket(x);
+    slowDown(rocket);
+    calculateSpeed(rocket);
+    console.log(rocket);
 }
 // DATA - show the rocket info
 function print(rocket) {
-    var printThrustMaxPower = [];
-    for (var i = 0; i < rocket.thrusters.length; i++) {
-        printThrustMaxPower.push(rocket.thrusters[i].thrustMaxPower);
+    if (rocket.rocketId !== "") {
+        var printThrustMaxPower = [];
+        for (var i = 0; i < rocket.thrusters.length; i++) {
+            printThrustMaxPower.push(rocket.thrusters[i].thrustMaxPower);
+        }
+        document.getElementById("info").innerHTML +=
+            "The rocket " + rocket.rocketId + " you have created has " + rocket.thrusters.length + " thrusters: " + printThrustMaxPower + "<br>";
     }
-    document.getElementById("info1").innerText =
-        "The rocket " + rocket.rocketId + " you have created has " + rocket.thrusters.length + " thrusters: " + printThrustMaxPower;
+}
+function clean() {
+    document.getElementById("info").innerText = "";
+    document.getElementById("velocidad").innerText = "";
 }
 // function for the rocket info buttons
 function printRocketInfo(x) {
-    if (x == 1) {
-        if (rocket1 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        }
-        else {
-            print(rocket1);
-        }
-    }
-    else if (x == 2) {
-        if (rocket2 == undefined) {
-            alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-        }
-        else {
-            print(rocket2);
-        }
-    }
+    var rocket = getRocket(x);
+    clean();
+    print(rocket);
 }
 function printAllRockets() {
-    if (rocket1 == undefined && rocket2 == undefined) {
-        alert("Sorry, this option is off limits! You haven't created a rocket yet!");
-    }
-    else if (rocket1 == undefined) {
-        print(rocket2);
-    }
-    else if (rocket2 == undefined) {
-        print(rocket1);
-    }
-    else {
-        print(rocket1);
-        print(rocket2);
+    clean();
+    for (var i = 0; i < rockets.length; i++) {
+        print(getRocket(i));
     }
 }
+/* function printAllRockets() {
+    clean();
+    print(getRocket(1));
+    (<HTMLInputElement>document.getElementById("info")).innerHTML +="<br>";
+    print(getRocket(2));
+} */ 
